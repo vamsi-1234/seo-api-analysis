@@ -1,0 +1,117 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "SEO Analysis API",
+    "description": "API for analyzing web content for SEO factors",
+    "contact": {
+      "email": "support@example.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Analysis",
+      "description": "SEO analysis operations"
+    }
+  ],
+  "paths": {
+    "/analyze": {
+      "post": {
+        "tags": ["Analysis"],
+        "summary": "Analyze web content",
+        "description": "Analyzes provided HTML content for SEO factors",
+        "operationId": "analyzeContent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "example": "<html><head><meta name='description' content='sample'></head><body><h1>Title</h1></body></html>"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful analysis",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "keyword_density": {
+                      "type": "object",
+                      "example": {"sample": 0.33}
+                    },
+                    "readability_score": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 78.45
+                    },
+                    "headlines": {
+                      "type": "object",
+                      "example": {"h1": 1, "h2": 0, "h3": 0}
+                    },
+                    "meta_description": {
+                      "type": "object",
+                      "example": {
+                        "length": 18,
+                        "is_valid": true,
+                        "content": "sample"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Content is required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+"
+/vendor
+/.env
+/composer.lock
+.idea/
+*.swp
+*.swo
+*.log
+"

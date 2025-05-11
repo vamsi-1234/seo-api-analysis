@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SEO API Demo</title>
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        textarea { width: 100%; height: 200px; margin: 10px 0; }
+        .result { margin-top: 20px; padding: 15px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SEO Analysis Demo</h1>
+        <textarea id="content" placeholder="Enter HTML content here..."></textarea>
+        <button onclick="analyze()">Analyze</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        async function analyze() {
+            const content = document.getElementById('content').value;
+            const response = await fetch('http://localhost:8080/analyze', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content })
+            });
+            
+            const result = await response.json();
+            document.getElementById('result').innerHTML = 
+                `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        }
+    </script>
+</body>
+</html>
