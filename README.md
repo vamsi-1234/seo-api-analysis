@@ -41,12 +41,12 @@ mysql -u root -p seo_analysis < database.sql
 ### 5. Run tests
 ./vendor/bin/phpunit tests
 
-### Running the server
+### 6. Running the server
 php -S localhost:8080 -t public
 
 # API Usage
 
-# Endpoint
+Endpoint
 
 POST /analyze
 
@@ -54,7 +54,9 @@ POST /analyze
 
 curl -X POST http://localhost:8080/analyze \
   -H "Content-Type: application/json" \
-  -d '{"content":"<html><head><meta name=\"description\" content=\"Sample description\"></head><body><h1>Title</h1><p>Content with keywords</p></body></html>"}'
+  -d 
+  '{"content":"<html><head><meta name=\"description\" 
+  content=\"Sample description\"></head><body><h1>Title</h1><p>Content with keywords</p></body></html>"}'
   
 **Documentation**
 
