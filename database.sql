@@ -1,4 +1,3 @@
-CREATE DATABASE seo_analysis;
 USE seo_analysis;
 
 CREATE TABLE analysis_results (
