@@ -26,11 +26,17 @@ composer install
 
 ### 3. Environment Configuration
 cp env.example .env
+
 Edit .env with your database credentials:
+
 DB_HOST=localhost
+
 DB_NAME=seo_analysis
+
 DB_USER=your_db_user
+
 DB_PASS=your_db_password
+
 APP_ENV=development
 
 ### 4. Database Setup
