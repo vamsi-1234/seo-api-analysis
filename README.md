@@ -51,12 +51,13 @@ Endpoint
 POST /analyze
 
 # Sample Request
-
+```
 curl -X POST http://localhost:8080/analyze \
   -H "Content-Type: application/json" \
   -d 
   '{"content":"<html><head><meta name=\"description\" 
   content=\"Sample description\"></head><body><h1>Title</h1><p>Content with keywords</p></body></html>"}'
+  ```
   
 **Documentation**
 
