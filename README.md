@@ -1,34 +1,34 @@
 # SEO Analysis API
 
-A PHP API for analyzing web content for SEO factors including keyword density, readability scores, headline structure, and meta descriptions.
+An API for PHP that analyzes web text for SEO elements like headline structure, readability ratings, keyword density, and meta descriptions.
 
 ## Features
-- Keyword density analysis
-- Readability scoring
+- Analysis of keyword density is one of the features.
+- Evaluation of the meta description
 - Headline structure analysis (H1-H3)
-- Meta description evaluation
-- Swagger/OpenAPI documentation
-- Unit testing with PHPUnit
+- Readability scoring
+- OpenAPI/Swagger docs
+- Utilizing PHPUnit for unit testing
 
-## Prerequisites
+## Requirements
 - PHP 8.0+
 - Composer
 - MySQL
 
-## Installation
+## Setting up
 
 ### 1. Clone Repository
 git clone https://github.com/vamsi-1234/seo-api.git
 
 cd seo-api
 
-### 2. Install Dependencies
+### 2. Install Requirements from composer.json
 composer install
 
-### 3. Environment Configuration
+### 3. Configuring the environment
 cp env.example .env
 
-Edit .env with your database credentials:
+Change the.env file using your database credentials:
 
 DB_HOST=localhost
 
@@ -45,10 +45,10 @@ mysql -u root -p -e "CREATE DATABASE seo_analysis"
 
 mysql -u root -p seo_analysis < database.sql
 
-### 5. Run tests
+### 5. Excecute tests
 ./vendor/bin/phpunit tests
 
-### 6. Running the server
+### 6. Launch the server
 php -S localhost:8080 -t public
 
 # API Usage
@@ -68,7 +68,7 @@ curl -X POST http://localhost:8080/analyze \
   
 **Documentation**
 
-Access Swagger UI at:
+Go to the Swagger UI at:
 
 http://localhost:8080/docs
 
