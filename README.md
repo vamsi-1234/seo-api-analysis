@@ -34,6 +34,7 @@ DB_PASS=your_db_password
 APP_ENV=development
 
 ### 4. Database Setup
+mysql -u root -p -e "CREATE DATABASE seo_analysis"
 mysql -u root -p seo_analysis < database.sql
 
 ### 5. Run tests
