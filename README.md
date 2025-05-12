@@ -35,6 +35,7 @@ APP_ENV=development
 
 ### 4. Database Setup
 mysql -u root -p -e "CREATE DATABASE seo_analysis"
+
 mysql -u root -p seo_analysis < database.sql
 
 ### 5. Run tests
@@ -44,20 +45,26 @@ mysql -u root -p seo_analysis < database.sql
 php -S localhost:8080 -t public
 
 # API Usage
-**Endpoint**
+
+# Endpoint
+
 POST /analyze
 
-Sample Request
+# Sample Request
 
 curl -X POST http://localhost:8080/analyze \
   -H "Content-Type: application/json" \
   -d '{"content":"<html><head><meta name=\"description\" content=\"Sample description\"></head><body><h1>Title</h1><p>Content with keywords</p></body></html>"}'
   
 **Documentation**
+
 Access Swagger UI at:
+
 http://localhost:8080/docs
 
 **Demo Page**
+
 public/demo.html contains a simple testing interface. Access it at:
+
 http://localhost:8080/demo.html
 
