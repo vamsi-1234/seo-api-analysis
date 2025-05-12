@@ -19,6 +19,7 @@ A PHP API for analyzing web content for SEO factors including keyword density, r
 
 ### 1. Clone Repository
 git clone https://github.com/vamsi-1234/seo-api.git
+
 cd seo-api
 
 ### 2. Install Dependencies
