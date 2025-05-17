@@ -37,13 +37,21 @@ DB_PASS=secret
 APP_ENV=development
 
 ### 4. Running via Docker
+
 docker-compose build --no-cache
+
+
 docker-compose up -d
+
+
 cat database.sql | docker-compose exec -T db mysql -u root -psecret seo_analysis
 
 
 ### 5. Excecute tests
+
 docker-compose exec app composer install
+
+
 docker-compose exec app sh -c "cd /var/www/html && ./vendor/bin/phpunit tests"
 
 
