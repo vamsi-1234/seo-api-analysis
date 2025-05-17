@@ -11,9 +11,7 @@ An API for PHP that analyzes web text for SEO elements like headline structure, 
 - Utilizing PHPUnit for unit testing
 
 ## Requirements
-- PHP 8.0+
-- Composer
-- MySQL
+- Docker and Docker desktop
 
 ## Setting up
 
@@ -22,34 +20,48 @@ git clone https://github.com/vamsi-1234/seo-api.git
 
 cd seo-api
 
-### 2. Install Requirements from composer.json
-composer install
 
 ### 3. Configuring the environment
 cp env.example .env
 
 Change the.env file using your database credentials:
 
-DB_HOST=localhost
+DB_HOST=db
 
 DB_NAME=seo_analysis
 
-DB_USER=your_db_user
+DB_USER=root
 
-DB_PASS=your_db_password
+DB_PASS=secret
 
 APP_ENV=development
 
-### 4. Database Setup
-mysql -u root -p -e "CREATE DATABASE seo_analysis"
+### 4. Running via Docker
 
-mysql -u root -p seo_analysis < database.sql
+docker-compose build --no-cache
+
+
+docker-compose up -d
+
+If there is a service already running on port 8080 it might throw an error. In that case yu need to follow thse steps :
+
+Update docker-compose.yml - Change it to port 8082
+
+Update API Endpoints in demo.html - port 8082
+
+
+
+
+cat database.sql | docker-compose exec -T db mysql -u root -psecret seo_analysis
+
 
 ### 5. Excecute tests
-./vendor/bin/phpunit tests
 
-### 6. Launch the server
-php -S localhost:8080 -t public
+docker-compose exec app composer install
+
+
+docker-compose exec app sh -c "cd /var/www/html && ./vendor/bin/phpunit tests"
+
 
 # API Usage
 
