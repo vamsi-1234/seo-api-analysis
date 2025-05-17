@@ -28,6 +28,7 @@ services:
       MYSQL_DATABASE: seo_analysis
     volumes:
       - db_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
