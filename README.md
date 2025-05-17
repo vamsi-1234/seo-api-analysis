@@ -43,6 +43,14 @@ docker-compose build --no-cache
 
 docker-compose up -d
 
+If there is a service already running on port 8080 it might throw an error. In that case yu need to follow thse steps :
+
+Update docker-compose.yml - Change it to port 8082
+
+Update API Endpoints in demo.html - port 8082
+
+
+
 
 cat database.sql | docker-compose exec -T db mysql -u root -psecret seo_analysis
 
