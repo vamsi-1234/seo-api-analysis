@@ -96,13 +96,7 @@ class SEOWebAnalyzer
 
         return $syllables;
     }
-    // // In SEOWebAnalyzer.php
-    // private function extractText(string $html): string
-    // {
-    //     $dom = new DOMDocument();
-    //     @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
-    //     return trim(preg_replace('/\s+/', ' ', $dom->textContent));
-    // }
+
 
     private function analyzeReadability(string $html): float
     {
