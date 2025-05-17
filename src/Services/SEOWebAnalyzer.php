@@ -67,13 +67,42 @@ class SEOWebAnalyzer
             'content' => $description
         ];
     }
-    // In SEOWebAnalyzer.php
     private function extractText(string $html): string
     {
         $dom = new DOMDocument();
         @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
-        return trim(preg_replace('/\s+/', ' ', $dom->textContent));
+        $body = $dom->getElementsByTagName('body')->item(0);
+        return $body ? trim(preg_replace('/\s+/', ' ', $body->textContent)) : '';
     }
+
+    private function countWordSyllables(string $word): int
+    {
+        $word = preg_replace('/[^a-z]/i', '', strtolower($word));
+        if (empty($word)) return 0;
+
+        // Count vowel groups (e.g., "ea" = 1 group)
+        preg_match_all('/[aeiouy]+/i', $word, $matches);
+        $vowelGroups = count($matches[0]);
+
+        // Subtract silent 'e' at the end
+        $silentE = preg_match('/e$/i', $word) && ($vowelGroups > 1);
+        $syllables = max(1, $vowelGroups - $silentE);
+
+        // Handle 'le' endings (e.g., "table" → 2 syllables)
+        if (preg_match('/[^aeiouy]le$/i', $word)) $syllables++;
+
+        // Handle compound words (e.g., "mother-in-law")
+        $syllables += substr_count($word, '-');
+
+        return $syllables;
+    }
+    // // In SEOWebAnalyzer.php
+    // private function extractText(string $html): string
+    // {
+    //     $dom = new DOMDocument();
+    //     @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+    //     return trim(preg_replace('/\s+/', ' ', $dom->textContent));
+    // }
 
     private function analyzeReadability(string $html): float
     {
@@ -103,45 +132,5 @@ class SEOWebAnalyzer
         return $count;
     }
 
-    private function countWordSyllables(string $word): int
-    {
-        // Improved syllable counting logic
-        // $word = preg_replace('/[^a-z]/i', '', strtolower($word));
-    
-        // // Special cases first
-        // if (preg_match('/^(ion|complex|ious)$/', $word)) return 2;
-        
-        // $vowels = preg_match_all('/[aeiouy]/i', $word);
-        // $silentE = preg_match('/e$/', $word) && !preg_match('/[aeiouy][^aeiouy]*e$/i', $word);
-        
-        // $syllables = max(1, $vowels - $silentE);
-        
-        // // Handle 'le' endings
-        // if (preg_match('/[^aeiouy]le$/', $word)) $syllables++;
-        
-        // // Handle compound words
-        // if (preg_match('/-/i', $word)) $syllables += substr_count($word, '-');
-        
-        // return $syllables;
-
-        $word = preg_replace('/[^a-z]/i', '', strtolower($word));
-    
-        // Special cases first
-        if (preg_match('/^(ion|complex|ious)$/', $word)) return 2;
-        
-        $vowels = preg_match_all('/[aeiouy]/i', $word);
-        $silentE = preg_match('/e$/', $word) && !preg_match('/[aeiouy][^aeiouy]*e$/i', $word);
-        
-        $syllables = max(1, $vowels - $silentE);
-        
-        // Handle 'le' endings
-        if (preg_match('/[^aeiouy]le$/', $word)) $syllables++;
-        
-        // Handle compound words
-        if (preg_match('/-/i', $word)) $syllables += substr_count($word, '-');
-        
-        return $syllables;
-
-    }
     
 }

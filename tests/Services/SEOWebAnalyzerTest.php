@@ -39,7 +39,7 @@ class SEOWebAnalyzerTest extends TestCase
         $this->assertIsFloat($result['readability_score']);
         
         // Expected range based on actual content
-        $this->assertEqualsWithDelta(48.08, $result['readability_score'], 5);
+        $this->assertEqualsWithDelta(79.81, $result['readability_score'], 5);
     }
 
     public function testHeadlineStructure()
